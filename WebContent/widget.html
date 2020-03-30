@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>First Widget</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    <script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+		<script >
+		require([ "dojo/_base/declare",
+	          "dojo/dom-construct",
+	          "dojo/parser",
+	          "dojo/ready",
+	          "dijit/_WidgetBase",
+	          "dijit/_TemplatedMixin"],
+	          function (declare, domConstruct, parser, ready, _WidgetBase,_TemplatedMixin){
+		declare ("app.FirstWidget",[_WidgetBase,_TemplatedMixin],{
+			i : 10,
+			name : '',
+			age : 0,
+			constructor : function(){
+				this.i = 30;
+				alert ("Inside Constructor");
+				console.log("i:con",this.i);
+			},
+			postMixInProperties : function(){
+				this.i = 20;
+				alert ("Inside postMixInProperties");
+				console.log("i:post",this.i);
+			},
+		 	buildRendering : function(){
+				alert ("Inside buildRendering");
+				this.domNode = domConstruct.create("button",
+				{innerHTML: "I am Button!!"});
+			} 
+			
+			/* templateString:
+	            "<button data-dojo-attach-point='containerNode' data-dojo-attach-event='onclick: onClick'>vijju</button>",
+	        onClick: function(evt){
+	                alert("Awesome!!");
+	        }
+			 */
+			
+			
+			
+			
+			,
+			_setNameAttr : function(name){
+				this.name = name;
+			},
+			_setAgeAttr : function(age){
+				this.age = age;
+			},
+			postCreate : function(){
+				alert("Name : " + this.name);
+				alert("Age : " + this.age);
+			},
+			startUP : function(){
+				alert ("Inside SatrtUp");
+				console.log("hiiiii");
+			}
+		});
+
+	});
+		
+		</script>
+	
+	
+
+
+</head>
+<body class="claro">
+
+<span data-dojo-type="app.FirstWidget"
+	data-dojo-props="name:'Raja',age:'30'"></span>
+</body>
+</html>

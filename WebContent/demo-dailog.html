@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dialog</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    
+<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+</head>
+<body class="claro">
+<!-- <button onclick="myDialog.show();">show</button> -->
+
+
+<!-- <script>
+
+require(["dijit/Dialog",
+	"dojo/domReady!"],function(Dialog){
+	
+	myDialog = new Dialog({
+        title: "My Dialog",
+        content: "Test content.",
+        style: "width: 300px"
+    }); });</script>-->
+
+
+<script>
+require(["dijit/Dialog", "dijit/form/TextBox", "dijit/form/Button","dojo/domReady!"]);
+	</script>
+</head>
+<body class="claro">
+    <div data-dojo-type="dijit/Dialog" data-dojo-id="myDialog" title="Name and Address">
+    <table >
+        <tr>
+            <td><label for="name">Name:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <td><label for="address">Address:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="address" id="address"></td>
+        </tr>
+    </table>
+
+    <div >
+        <button data-dojo-type="dijit/form/Button" type="submit" id="ok">OK</button>
+        <button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="onClick:function(){myDialog.hide();}"
+                id="cancel">Cancel</button>
+    </div>
+</div>
+
+<button data-dojo-type="dijit/form/Button" type="button" onClick="myDialog.show();">
+    Show me!
+</button>
+
+
+
+
+
+
+
+</body>
+</html>

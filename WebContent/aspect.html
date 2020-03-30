@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Testing.............</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    
+<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+
+
+<script>
+
+require(["dojo/aspect"], function(aspect) {
+	
+	// Create an object and method to spy on
+	var original = {
+		someMethod: function(arg1, arg2) {
+			console.warn("original.someMethod called: ", arg1, arg2);
+			return "Hello " + arg1 + " " + arg2;
+		}
+	};
+	/* aspect.around(original, "someMethod", function(arg1, arg2) {
+		console.warn("around method called with arguments: ", arg1, arg2);
+	}, true);  */
+	// Use aspect.after ("before" also available)
+	/*  aspect.after(original, "someMethod", function(arg1, arg2) {
+		console.warn("After method called with arguments: ", arg1, arg2);
+	}, true);  */ 
+	
+	/* aspect.before(original, "someMethod", function(arg1, arg2) {
+		console.warn("aspect.before: ", arg1, arg2);
+	});  */
+	
+	// Call the around method, which gets one argument, the original method
+	aspect.around(original, "someMethod", function(originalMethod) {
+		// Return a new method, which receives the same arguments as the original, just like "aspect.after"
+		return function(arg1, arg2) {
+			// Execute "before" functionality
+			console.warn("before!", arg1, arg2);
+			
+			// Execute the original method as desired
+			originalMethod.apply(this, arguments);
+			
+			// Execute "after" functioanlity
+			console.warn("after!");
+		};
+	});
+	
+	
+	// ...and a while later, call the original method
+	var org=original.someMethod("David", "Walsh");
+	console.log("original.someMethod",org);
+	
+});
+
+</script>
+
+</body>
+</html>

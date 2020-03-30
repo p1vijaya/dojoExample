@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+
+</head>
+<body  class="claro">
+<script>
+
+require(["dojo/_base/declare",
+    "dojo/dom-construct",
+    "dojo/parser",
+    "dojo/ready",
+    "dijit/_WidgetBase",
+    "dijit/_TemplatedMixin"],function(declare,domConstruct,parser,ready,_WidgetBase,_TemplatedMixin){
+	
+	declare ("demowidget",[_WidgetBase,_TemplatedMixin],{
+		buildRendering: function(){
+	         // create the DOM for this widget
+	         this.domNode = domConstruct.create("div", { innerHTML: "<input type='text' value='hi'/> <input type='text'value='hi'/>" });
+	     }
+             
+ });
+	
+	
+	
+});
+
+
+</script>
+
+
+<div data-dojo-type="demowidget"
+	></div>
+</body>
+</html>

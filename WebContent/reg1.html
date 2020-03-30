@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+
+<html> 
+
+<head> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+
+<title>NewPassportApplication</title> 
+
+<style type="text/css"> 
+
+  
+
+.labelsAndValues-labelCell { 
+
+  
+
+  background-color: lightgrey; 
+
+  padding-left: 5px; 
+
+} 
+
+  
+
+.labelsAndValues-valueCell { 
+
+  
+
+  padding-left: 20px; 
+
+  background-color: lightblue; 
+
+} 
+
+  
+
+  
+
+  
+
+</style> 
+
+   
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    <script>dojoConfig = {parseOnLoad: true}</script> 
+
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+     
+
+    <script> 
+
+require(["dojo/parser", "dijit/form/Form", "dijit/form/Button", "dijit/form/TextBox", "dijit/form/DateTextBox"]); 
+
+    </script> 
+
+    <script type="text/javascript"> 
+
+    dojo.require("dijit.dijit"); 
+
+dojo.require("dojox.layout.TableContainer"); 
+
+dojo.require("dijit.form.TextBox"); 
+
+dojo.require("dijit.form.CheckBox"); 
+
+dojo.require("dijit.form.NumberSpinner"); 
+
+dojo.require("dijit.form.Textarea"); 
+
+dojo.require("dijit/form/DateTextBox") 
+
+dojo.require("dijit/form/ValidationTextBox"); 
+
+  
+
+</script> 
+
+<script> 
+
+require(["dijit/Dialog", "dojo/domReady!"], function(Dialog){ 
+
+    myDialog = new Dialog({ 
+
+        title: "My Dialog", 
+
+        content: "Test content.", 
+
+        style: "width: 300px" 
+
+    }); 
+
+}); 
+
+    </script> 
+
+  
+
+</head> 
+
+<body class="claro"> 
+
+<form action="" id="myform" method="post"> 
+
+     
+
+    <script>  
+
+  
+
+var states = [  
+
+  
+
+    {name:"Andhra pradesh", state:"AP"},  
+
+  
+
+    {name:"Karnataka", state:"KA"},  
+
+  
+
+    {name:"Tamilnadu", state:"TN"},  
+
+  
+
+    {name:"Kerala", state:"KE"},  
+
+  
+
+    {name:"Mumbai", state:"MU"}  
+
+  
+
+];  
+
+  
+
+   
+
+  
+
+var cities =  [  
+
+  
+
+    { name:"Visakhapatnam", state:"AP" },  
+
+  
+
+    { name:"Amaravathi", state:"AP" },  
+
+  
+
+    { name:"Kurnool", state:"AP" },  
+
+  
+
+    { name:"Hyderabad", state:"TS" },  
+
+  
+
+    { name:"Kochi", state:"KE" },  
+
+  
+
+    { name:"Bangalore", state:"KA" },  
+
+  
+
+    { name:"Chennai", state:"TN" },  
+
+  
+
+    { name:"Pune", state:"MU" }  
+
+  
+
+];  
+
+  
+
+   
+
+  
+
+require([  
+
+  
+
+    "dojo/store/Memory",  
+
+  
+
+    "dijit/form/ComboBox", "dijit/form/FilteringSelect",  
+
+  
+
+    "dojo/domReady!"  
+
+  
+
+], function(Memory, ComboBox, FilteringSelect){  
+
+  
+
+   
+
+  
+
+   
+
+  
+
+    new dijit.form.FilteringSelect({  
+
+  
+
+        id: "state",  
+
+  
+
+        store: new Memory({ idProperty: "state", data: states }),  
+
+  
+
+        autoComplete: true,  
+
+  
+
+        style: "width: 150px;",  
+
+        title : "sate",
+
+        onChange: function(state){  
+
+  
+
+                    console.log("combobox onchange state", state, this.item);  
+
+  
+
+   
+
+  
+
+            dijit.byId('city').query.state = this.item.state || /.*/;  
+
+  
+
+            document.getElementById('city').value='';  
+
+  
+
+        }  
+
+  
+
+    }, "state").startup();  
+
+  
+
+      
+
+  
+
+    new dijit.form.ComboBox({  
+
+  
+
+        id: "city",  
+
+  
+
+        store: new Memory({ data: cities }),  
+
+  
+
+        autoComplete: true,  
+
+  
+
+        query: {state: /.*/},  
+
+          title : "city",
+
+
+        style: "width: 150px;",  
+
+  
+
+        required: true,  
+
+  
+
+        searchAttr: "name",  
+
+  
+
+        onChange: function(city){  
+
+  
+
+            console.log("combobox onchange city", city, this.item);  
+
+  
+
+            dijit.byId('state').set('value', this.item ? this.item.state : null);  
+
+  
+
+   
+
+  
+
+        }  
+
+  
+
+    }, "city").startup();  
+
+  
+
+});  
+
+  
+
+   
+
+  
+
+    </script>  
+
+  
+
+  
+
+     
+
+   <div></div> 
+
+   <div></div> 
+
+   <h3>New Application</h3> 
+
+    <div data-dojo-type="dojox.layout.TableContainer" data-dojo-props="cols:1, customClass:'labelsAndValues'" id="tc1"> 
+
+  <div data-dojo-type="dijit.form.TextBox"  required="true" title="First Name:" name="fname" id="fname" value="" ></div> 
+
+  <div data-dojo-type="dijit.form.TextBox" required="true" title="Middle Name:"   name="middlename" id="middlename" value="" ></div> 
+
+  <div data-dojo-type="dijit.form.TextBox" required="true" title="Last Name:" name="lastname" id="lastname" value=""></div> 
+
+  <div data-dojo-type="dijit.form.TextBox" title="FathersName:" name="fathersname" id="fatherstname" value=""></div> 
+
+  <div data-dojo-type="dijit/form/DateTextBox" required="true" title="Date of Birth:" name="dob" id="dob" value=""></div> 
+
+  <div data-dojo-type="dijit/form/ValidationTextBox" data-dojo-props="regExp:'\\d{10}', invalidMessage:'Invalid Mobile.'"  title="Phone Number:" name="phonenumber" id="phonenumber" value=""    ></div> 
+
+  <div data-dojo-type="dijit.form.TextBox" title="Employment Type:" name="emptype" id="emptype" value=""></div> 
+
+   
+
+  <div data-dojo-type="dijit.form.TextBox" title="Employer Name:" name="empname" id="empname" value=""></div> 
+
+  <div data-dojo-type="dijit.form.TextBox" title="Annual Income:" name="annualincome" id="annualincome" value=""></div> 
+
+   
+
+  <div  id="state" ></div> 
+
+    
+
+  <div  id="city" title="tile"></div> 
+
+  <textarea data-dojo-type="dijit.form.Textarea" id="texteditor" style="width:100%;" colspan="4" title="Address Details"> 
+
+  </textarea> 
+
+   
+
+  <button data-dojo-type="dijit/form/Button" type="submit" name="submitButton" value="Submit">Submit</button> 
+
+    <button data-dojo-type="dijit/form/Button" type="reset">Reset</button> 
+
+   
+
+</div> 
+
+  
+
+  
+
+    </form> 
+
+     
+
+  
+
+</body> 
+
+</html> 

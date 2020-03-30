@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Testing.............</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    
+<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+</head>
+<body>
+<h3 id="output">heloo</h3>
+
+<script>
+
+require(["dojo/dom",
+		"dojo/dom-construct"],function(dom,domConstruct){
+	var sample=dom.byId('output');
+	
+	sample.innerHTML = "I was found!";
+
+	console.log(sample,"sample")
+/* 	domConstruct.place('<b> Dojo!</b>', sample); */
+
+});
+
+
+</script>
+
+</body>
+</html>

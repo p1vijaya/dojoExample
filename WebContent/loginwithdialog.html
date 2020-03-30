@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LoginPage</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.12.3/dijit/themes/claro/claro.css" />
+
+     
+
+    
+<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script>
+	<script>
+	/* dojo.require("dijit.form.TextBox",
+			"dijit/Dialog"		
+	);
+	dojo.ready(function(){
+		  // Locate the JS object.
+		  var name = dijit.byId("name");
+		  console.log("name",name);
+		  var password=dijit.byId("password");
+		  console.log("password",password);
+		  if(name==''||password=''){
+		    alert("name or password is empty");
+			  return false;  
+		  }
+		});
+	 */
+	
+     dojo.require("dojo.parser");
+     dojo.require("dijit.form.TextBox");
+  
+     require(["dijit/Dialog",
+    		"dojo/domReady!"],function(Dialog){
+    		
+    		myDialog = new Dialog({
+    	        title: "My Dialog",
+    	        content: "All fields are required",
+    	        style: "width: 500px"
+    	    }); 
+    		});
+     function validate(  ) {
+    	console.log("in validate")
+         var f = document.getElementById("registration_form");
+         if (f.name.value == "" ||f.password.value == "" ) {
+               /*   alert("All fields are required."); */
+               myDialog.show();
+              
+                 return false;
+         }
+
+       
+     }
+	</script>
+</head>
+<body class="claro">
+<form action="" method="get" id="registration_form"  onsubmit="return validate()">
+ <table >
+        <tr>
+            <td><label for="name">Name:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <td><label for="password">Address:</label></td>
+            <td><input data-dojo-type="dijit/form/TextBox" name="password" id="password"></td>
+        </tr>
+    </table>
+
+    <div >
+        <button data-dojo-type="dijit/form/Button" type="submit" id="ok">OK</button>
+        <button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="onClick:function(){myDialog.hide();}"
+                id="cancel">Cancel</button>
+    </div>
+</form>
+</body>
+</html>
